@@ -1,8 +1,26 @@
-console.log('File has been executed');
+const fs = require('fs');
 
-const addNote = (title, content) => console.log(`${title} : ${content}`);
+const addNote = (title, content) => {
+    let notes = [];
+    if(fs.existsSync('notes-data.json')) {
+        notes = JSON.parse(fs.readFileSync('notes-data.json'));        
+    }
+    const note = {
+        title,
+        content
+    };
+    notes.push(note);
+    fs.writeFileSync('notes-data.json', JSON.stringify(notes));
+}
 const removeNote = title => console.log(`${title} removed.`);
-const readNote = title => console.log(`Reading ${title}`);
-const getAllNotes = () => console.log('Getting all Notes');
+const readNote = title => {
 
-module.exports = { addNote, removeNote, readNote, getAllNotes };
+}
+const getAllNotes = () => JSON.parse(fs.readFileSync('notes-data.json'));
+
+module.exports = {
+    addNote,
+    removeNote,
+    readNote,
+    getAllNotes
+};

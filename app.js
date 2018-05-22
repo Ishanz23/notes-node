@@ -19,7 +19,7 @@ switch(command) {
     notes.readNote(argv.title);
     break;
   case 'list':
-    notes.getAllNotes();
+    console.log(notes.getAllNotes());
     break;
   default:
     console.log('Command not recognized...');
