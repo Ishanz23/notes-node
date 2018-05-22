@@ -24,5 +24,8 @@
   "homepage": "https://github.com/Ishanz23/notes-node#readme",
   "dependencies": {
     "lodash": "^4.17.10"
+  },
+  "devDependencies": {
+    "yargs": "^11.0.0"
   }
 }
