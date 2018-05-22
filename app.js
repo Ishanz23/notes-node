@@ -4,19 +4,19 @@ const _ = require('lodash');
 const yargs = require('yargs');
 const notes= require('./notes.js');
 
-const v = yargs.argv;
-const command = argsv._[0];
+const argv = yargs.argv;
+const command = argv._[0];
 console.log(`Command: ${command}`);
 
 switch(command) {
   case 'add':
-    notes.addNote(argsv.title, argsv.content);
+    notes.addNote(argv.title, argv.content);
     break;
   case 'remove':
-    notes.removeNote(argsv.title);
+    notes.removeNote(argv.title);
     break;
   case 'read':
-    notes.readNote(argsv.title);
+    notes.readNote(argv.title);
     break;
   case 'list':
     notes.getAllNotes();
