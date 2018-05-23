@@ -1,18 +1,42 @@
 const fs = require('fs');
 
-const addNote = (title, content) => {
-    let notes = [];
-    if(fs.existsSync('notes-data.json')) {
-        notes = JSON.parse(fs.readFileSync('notes-data.json'));        
+const fetchNotes = () => {
+    try {
+        return JSON.parse(fs.readFileSync('notes-data.json'));        
+    } catch (e) {
+        return [];
     }
+};
+
+const saveNotes = notes => {
+    fs.writeFileSync('notes-data.json', JSON.stringify(notes));
+};
+
+const addNote = (title, content) => {
+    const notes = fetchNotes();
     const note = {
         title,
         content
     };
-    notes.push(note);
-    fs.writeFileSync('notes-data.json', JSON.stringify(notes));
+    const duplicateNote = notes.filter( note => note.title === title);
+    if (duplicateNote.length === 0) {
+        notes.push(note);
+        saveNotes(notes);
+        return note;
+    } else {
+        console.log(`Note with title "${title}" already exist.`);
+    }
 }
-const removeNote = title => console.log(`${title} removed.`);
+
+const removeNote = title => {
+    const notes = fetchNotes();
+    if (notes.length > 0) {
+        const updatedNotes = notes.filter(note => note.title !== title);
+        saveNotes(updatedNotes);
+    } else {
+        console.log('No notes exist.')
+    }
+}
 const readNote = title => {
 
 }
