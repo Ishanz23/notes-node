@@ -38,13 +38,21 @@ const removeNote = title => {
     }
 }
 const readNote = title => {
-
+    const notes = fetchNotes();
+    return notes.filter(note => note.title === title)[0];
 }
+
 const getAllNotes = () => JSON.parse(fs.readFileSync('notes-data.json'));
 
+const logNote = note => {
+    console.log('---');
+    console.log(`Title : ${note.title}`);
+      console.log(`Content : ${note.content}`);
+}
 module.exports = {
     addNote,
     removeNote,
     readNote,
-    getAllNotes
+    getAllNotes,
+    logNote
 };
