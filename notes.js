@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const fetchNotes = () => {
     try {
-        return JSON.parse(fs.readFileSync('notes-data.json'));        
+        return JSON.parse(fs.readFileSync('notes-data.json'));
     } catch (e) {
         return [];
     }
@@ -18,7 +18,7 @@ const addNote = (title, content) => {
         title,
         content
     };
-    const duplicateNote = notes.filter( note => note.title === title);
+    const duplicateNote = notes.filter(note => note.title === title);
     if (duplicateNote.length === 0) {
         notes.push(note);
         saveNotes(notes);
@@ -45,9 +45,10 @@ const readNote = title => {
 const getAllNotes = () => JSON.parse(fs.readFileSync('notes-data.json'));
 
 const logNote = note => {
+    debugger;
     console.log('---');
     console.log(`Title : ${note.title}`);
-      console.log(`Content : ${note.content}`);
+    console.log(`Content : ${note.content}`);
 }
 module.exports = {
     addNote,
